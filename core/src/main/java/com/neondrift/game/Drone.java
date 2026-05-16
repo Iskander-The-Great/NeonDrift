@@ -6,18 +6,27 @@ public class Drone {
     float y;
     float width;
     float height;
-    float velocityY;
+
+    float speed = 280f;
+    boolean movingUp = true;
 
     public Drone(float x, float y, float width, float height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        this.velocityY = 0f;
     }
 
     public void update(float deltaTime) {
-        y = y + velocityY * deltaTime;
+        if (movingUp) {
+            y = y + speed * deltaTime;
+        } else {
+            y = y - speed * deltaTime;
+        }
+    }
+
+    public void changeDirection() {
+        movingUp = !movingUp;
     }
 
     public float getHitboxX() {
